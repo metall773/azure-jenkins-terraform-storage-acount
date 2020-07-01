@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('test Azure cred') {
+        stage('Create storage for terraform state') {
             steps {
                 withCredentials([azureServicePrincipal('61f78e17-f6a2-4ac2-a4be-c4edfa1a20d6')]) {
                     sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
