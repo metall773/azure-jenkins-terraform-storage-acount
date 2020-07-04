@@ -4,7 +4,7 @@ pipeline {
     }
     agent any
     stages {
-        stage('Clone terraform repo') {
+        stage('Create storage for terraform state') {
             steps {
                 script {
                     az account show
