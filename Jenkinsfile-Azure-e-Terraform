@@ -20,10 +20,6 @@ pipeline {
                   withCredentials([azureServicePrincipal('Az-ServicePrincipal-4-Jenkins')]) {
                     sh label: 'terraform init', script: '''
                     #!/bin/bash
-                    export TF_VAR_ARM_CLIENT_ID=$AZURE_CLIENT_ID
-                    export TF_VAR_ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
-                    export TF_VAR_ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
-                    export TF_VAR_ARM_TENANT_ID=$AZURE_TENANT_ID
                     export ARM_CLIENT_ID=$AZURE_CLIENT_ID
                     export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
                     export ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
@@ -35,7 +31,7 @@ pipeline {
                     ls -la e-terraform/
                     cd e-terraform
                     az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
-                    /usr/local/bin/terraform init -no-color -input=false
+                    /usr/local/bin/terraform init -no-color
                     /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color
                     '''
                   }
