@@ -11,7 +11,7 @@ pipeline {
                 }
                 script {
                     sh label: '', script: '''
-
+                    rm -Rf e-terraform
                     git clone https://github.com/metall773/e-terraform.git
                     ls -la
                     pwd
