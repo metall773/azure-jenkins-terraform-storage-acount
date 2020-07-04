@@ -8,6 +8,8 @@ pipeline {
                 }
                 script {
                     sh label: '', script: '''
+                    ls -la
+                    pwd
                     '''
                 }
             }
