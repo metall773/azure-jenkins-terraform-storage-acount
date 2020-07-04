@@ -32,7 +32,7 @@ pipeline {
                     cd e-terraform
                     /usr/local/bin/terraform init -no-color
                     echo plan
-                    /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color
+                    /usr/local/bin/terraform plan  -no-color
                     '''
                   }
                }
