@@ -16,8 +16,8 @@ pipeline {
         }
         stage('logon az and terraform init') {
             steps {
-                withCredentials([azureServicePrincipal('Az-ServicePrincipal-4-Jenkins')]) {}
                 script {
+                  withCredentials([azureServicePrincipal('Az-ServicePrincipal-4-Jenkins')]) {}
                     sh label: 'terraform init', script: '''
                     export TF_VAR_ARM_CLIENT_ID=$AZURE_CLIENT_ID
                     export TF_VAR_ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
