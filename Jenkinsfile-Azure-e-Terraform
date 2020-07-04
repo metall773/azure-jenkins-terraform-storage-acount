@@ -18,7 +18,8 @@ pipeline {
             steps {
                 script {
                   withCredentials([azureServicePrincipal('Az-ServicePrincipal-4-Jenkins')]) {
-                    sh label: 'terraform init', script: '''
+                    bash label: 'terraform init', script: '''
+                    #!/bin/bash
                     export TF_VAR_ARM_CLIENT_ID=$AZURE_CLIENT_ID
                     export TF_VAR_ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
                     export TF_VAR_ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
