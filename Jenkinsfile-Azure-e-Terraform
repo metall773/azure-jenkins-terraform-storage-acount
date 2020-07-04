@@ -27,6 +27,7 @@ pipeline {
                     export TF_VAR_ARM_TENANT_ID=$AZURE_TENANT_ID
                     
                     az account show
+                    az logout
                     ls -la e-terraform/
                     cd e-terraform
                     /usr/local/bin/terraform init -no-color
