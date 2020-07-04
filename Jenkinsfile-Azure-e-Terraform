@@ -26,8 +26,6 @@ pipeline {
                     export TF_LOG=DEBUG                    
                     export >export.txt
                     pwd
-                    az account show
-                    az logout
                     ls -la e-terraform/
                     cd e-terraform
                     /usr/local/bin/terraform init -no-color
