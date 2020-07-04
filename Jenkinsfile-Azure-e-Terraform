@@ -1,4 +1,7 @@
 pipeline {
+    parameters {
+            string(name: 'TERRAFORM_ACTION', description: 'terrafrom action like as plan, applay, destroy')
+    }
     agent any
     stages {
         stage('Create storage for terraform state') {
@@ -13,6 +16,9 @@ pipeline {
                     ls -la
                     pwd
                     ls -la e-terraform/
+                    cd e-terraform
+                    terraform init
+                    terraform ${params.TERRAFORM_ACTION}
                     '''
                 }
             }
