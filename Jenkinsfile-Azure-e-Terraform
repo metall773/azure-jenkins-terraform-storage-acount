@@ -17,8 +17,8 @@ pipeline {
                     pwd
                     ls -la e-terraform/
                     cd e-terraform
-                    terraform init
-                    terraform ${params.TERRAFORM_ACTION}
+                    /usr/local/bin/terraform init
+                    /usr/local/bin/terraform ${params.TERRAFORM_ACTION}
                     '''
                 }
             }
