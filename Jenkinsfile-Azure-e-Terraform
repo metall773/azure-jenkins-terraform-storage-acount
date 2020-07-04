@@ -21,10 +21,10 @@ pipeline {
                 }
                 script {
                     sh label: 'terraform init', script: '''
-                    export ARM_CLIENT_ID=$AZURE_CLIENT_ID
-                    export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
-                    export ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
-                    export ARM_TENANT_ID=$AZURE_TENANT_ID
+                    export TF_VAR_ARM_CLIENT_ID=$AZURE_CLIENT_ID
+                    export TF_VAR_ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
+                    export TF_VAR_ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
+                    export TF_VAR_ARM_TENANT_ID=$AZURE_TENANT_ID
                     export
                     az account show
                     ls -la e-terraform/
