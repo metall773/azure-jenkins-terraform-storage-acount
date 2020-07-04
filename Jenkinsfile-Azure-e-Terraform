@@ -7,7 +7,6 @@ pipeline {
         stage('Clone terraform repo') {
             steps {
                 script {
-                    az account show
                     sh label: 'git clone', script: '''
                     rm -Rf e-terraform
                     git clone https://github.com/metall773/e-terraform.git
