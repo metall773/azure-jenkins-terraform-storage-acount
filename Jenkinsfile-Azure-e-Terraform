@@ -17,7 +17,7 @@ pipeline {
         stage('logon az and terraform init') {
             steps {
                 withCredentials([azureServicePrincipal('61f78e17-f6a2-4ac2-a4be-c4edfa1a20d6')]) {
-                    sh 'az login --service-principal  -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
+                    sh ''
                 }
                 script {
                     sh label: 'terraform init', script: '''
@@ -25,6 +25,7 @@ pipeline {
                     export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
                     export ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
                     export ARM_TENANT_ID=$AZURE_TENANT_ID
+                    
                     az account show
                     ls -la e-terraform/
                     cd e-terraform
