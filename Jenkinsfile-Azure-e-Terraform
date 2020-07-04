@@ -1,6 +1,6 @@
 pipeline {
     parameters {
-            string(name: 'TERRAFORM_ACTION', description: 'terrafrom action like as plan, applay, destroy', defaultValue: 'plan')
+            string(name: 'TERRAFORM_ACTION', description: 'terrafrom action like as plan, applay, destroy')
     }
     agent any
     stages {
@@ -20,8 +20,8 @@ pipeline {
                     sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
                 }
                 script {
-                    az account show
                     sh label: 'terraform init', script: '''
+                    az account show
                     ls -la e-terraform/
                     cd e-terraform
                     /usr/local/bin/terraform init
