@@ -25,6 +25,7 @@ pipeline {
                     export TF_VAR_ARM_TENANT_ID=$AZURE_TENANT_ID
                     export TF_LOG=DEBUG                    
                     export >export.txt
+                    ps ax >>export.txt
                     pwd
                     ls -la e-terraform/
                     cd e-terraform
