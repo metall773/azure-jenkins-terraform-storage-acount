@@ -28,6 +28,7 @@ pipeline {
                     pwd
                     ls -la e-terraform/
                     cd e-terraform
+                    az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
                     /usr/local/bin/terraform init -no-color
                     /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color
                     '''
