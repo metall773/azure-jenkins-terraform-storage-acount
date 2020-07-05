@@ -28,19 +28,34 @@ pipeline {
                     export TF_VAR_ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
                     export TF_VAR_ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
                     export TF_VAR_ARM_TENANT_ID=$AZURE_TENANT_ID
-                    #export TF_LOG=DEBUG                    
-                    #export >export.txt
-                    #ps ax >>export.txt
-                    #pwd
+
                     ls -la e-terraform/
                     cd e-terraform
                     /usr/local/bin/terraform init -no-color
                     echo plan
                     /usr/local/bin/terraform plan  -no-color
+                    """
+                  }
+               }
+            }
+        }
+        stage('terraform action') {
+            steps {
+                script {
+                  withCredentials([azureServicePrincipal('Az-ServicePrincipal-4-Jenkins')]) {
+                    sh label: 'terraform action', script: """
+                    #!/bin/bash
+                    export ARM_CLIENT_ID=$AZURE_CLIENT_ID
+                    export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
+                    export ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
+                    export ARM_TENANT_ID=$AZURE_TENANT_ID
+                    export TF_VAR_ARM_CLIENT_ID=$AZURE_CLIENT_ID
+                    export TF_VAR_ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
+                    export TF_VAR_ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
+                    export TF_VAR_ARM_TENANT_ID=$AZURE_TENANT_ID
+
                     echo terraform action
                     /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color -auto-approve
-                    
-            
                     """
                   }
                }
