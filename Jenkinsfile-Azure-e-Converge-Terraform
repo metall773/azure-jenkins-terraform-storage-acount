@@ -46,7 +46,7 @@ pipeline {
                    withCredentials([azureServicePrincipal('Az-ServicePrincipal-4-Jenkins')]) {
                       sh label: 'terraform action', script: """
                       #!/bin/bash
-                      if [[ "${params.TERRAFORM_ACTION" != "plan" ]]; then
+                      if [[ "${params.TERRAFORM_ACTION}" != "plan" ]]; then
                          export ARM_CLIENT_ID=$AZURE_CLIENT_ID
                          export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
                          export ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
