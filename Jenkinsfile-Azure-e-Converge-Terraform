@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                   withCredentials([azureServicePrincipal('Az-ServicePrincipal-4-Jenkins')]) {
-                    sh label: 'terraform init', script: '''
+                    sh label: 'terraform init', script: """
                     #!/bin/bash
                     export ARM_CLIENT_ID=$AZURE_CLIENT_ID
                     export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
@@ -37,7 +37,9 @@ pipeline {
                     /usr/local/bin/terraform init -no-color
                     echo plan
                     /usr/local/bin/terraform plan  -no-color
-                    '''
+                    echo terraform action
+                    /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color
+                    """
                   }
                }
             }
