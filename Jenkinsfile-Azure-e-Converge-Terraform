@@ -38,7 +38,9 @@ pipeline {
                     echo plan
                     /usr/local/bin/terraform plan  -no-color
                     echo terraform action
-                    /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color
+                    /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color -auto-approve
+                    
+            
                     """
                   }
                }
