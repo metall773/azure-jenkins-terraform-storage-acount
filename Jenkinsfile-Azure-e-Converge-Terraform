@@ -46,17 +46,19 @@ pipeline {
                    withCredentials([azureServicePrincipal('Az-ServicePrincipal-4-Jenkins')]) {
                       sh label: 'terraform action', script: """
                       #!/bin/bash
-                      export ARM_CLIENT_ID=$AZURE_CLIENT_ID
-                      export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
-                      export ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
-                      export ARM_TENANT_ID=$AZURE_TENANT_ID
-                      export TF_VAR_ARM_CLIENT_ID=$AZURE_CLIENT_ID
-                      export TF_VAR_ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
-                      export TF_VAR_ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
-                      export TF_VAR_ARM_TENANT_ID=$AZURE_TENANT_ID
-                      cd e-terraform
-                      echo run terraform action
-                      /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color -auto-approve
+                      if [[ "${params.TERRAFORM_ACTION" != "plan" ]]; then
+                         export ARM_CLIENT_ID=$AZURE_CLIENT_ID
+                         export ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
+                         export ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
+                         export ARM_TENANT_ID=$AZURE_TENANT_ID
+                         export TF_VAR_ARM_CLIENT_ID=$AZURE_CLIENT_ID
+                         export TF_VAR_ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
+                         export TF_VAR_ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
+                         export TF_VAR_ARM_TENANT_ID=$AZURE_TENANT_ID
+                         cd e-terraform
+                         echo run terraform action
+                         /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color -auto-approve
+                      fi
                       """
                    }
                 }
