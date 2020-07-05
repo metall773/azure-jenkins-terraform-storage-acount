@@ -31,8 +31,9 @@ pipeline {
   
                       ls -la e-terraform/
                       cd e-terraform
+                      echo run terraform init
                       /usr/local/bin/terraform init -no-color
-                      echo plan
+                      echo run terraform plan
                       /usr/local/bin/terraform plan  -no-color
                       """
                    }
@@ -53,8 +54,8 @@ pipeline {
                       export TF_VAR_ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
                       export TF_VAR_ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
                       export TF_VAR_ARM_TENANT_ID=$AZURE_TENANT_ID
-                      pwd
-                      echo terraform action
+                      cd e-terraform
+                      echo run terraform action
                       /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color -auto-approve
                       """
                    }
