@@ -1,6 +1,6 @@
 pipeline {
     parameters {
-            string(name: 'TERRAFORM_ACTION', description: 'terrafrom action like as plan, applay, destroy', defaultValue: 'plan')
+            string(name: 'TERRAFORM_ACTION', description: 'terrafrom action like as plan, apply, destroy', defaultValue: 'plan')
     }
     agent any
     stages {
