@@ -34,7 +34,7 @@ pipeline {
                       echo run terraform init
                       /usr/local/bin/terraform init -no-color
                       echo run terraform plan
-                      /usr/local/bin/terraform plan  -no-color -var-file=terraform.tfvars
+                      /usr/local/bin/terraform plan  -no-color
                       """
                    }
                 }
@@ -57,7 +57,7 @@ pipeline {
                          export TF_VAR_ARM_TENANT_ID=$AZURE_TENANT_ID
                          cd e-terraform
                          echo run terraform action
-                         /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color -auto-approve -var-file=terraform.tfvars
+                         /usr/local/bin/terraform ${params.TERRAFORM_ACTION}  -no-color -auto-approve
                       fi
                       """
                    }
