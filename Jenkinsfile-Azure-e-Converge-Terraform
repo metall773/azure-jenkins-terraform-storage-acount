@@ -33,6 +33,7 @@ pipeline {
                       ls -la e-terraform/
                       cd e-terraform
                       echo run terraform init
+                      cat provider-main.tf
                       /usr/local/bin/terraform init -no-color
                       echo run terraform plan
                       /usr/local/bin/terraform plan  -no-color
