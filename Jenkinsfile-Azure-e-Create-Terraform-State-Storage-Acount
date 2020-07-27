@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Create storage for terraform state') {
             steps {
-                withCredentials([azureServicePrincipal('Az-ServicePrincipal-4-Jenkins')]) {
+                withCredentials([azureServicePrincipal('Az-ServicePrincipal-4-E')]) {
                     sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
                 }
                 script {
