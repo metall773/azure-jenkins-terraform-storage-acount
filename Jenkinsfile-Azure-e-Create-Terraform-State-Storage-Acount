@@ -10,7 +10,7 @@ pipeline {
                     sh label: '', script: '''
                     az account show
                     RESOURCE_GROUP_NAME=terraform-state
-                    STORAGE_ACCOUNT_NAME=4terraform2state
+                    STORAGE_ACCOUNT_NAME=terraform2state111e
                     CONTAINER_NAME=tstate
                     LOCATION=norwayeast
                     
