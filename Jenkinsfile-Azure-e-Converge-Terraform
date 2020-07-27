@@ -10,6 +10,7 @@ pipeline {
                     sh label: 'git clone', script: '''
                     rm -Rf e-terraform
                     git clone https://github.com/metall773/e-terraform.git
+                    git checkout dev
                     '''
                 }
             }
