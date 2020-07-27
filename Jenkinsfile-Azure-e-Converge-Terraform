@@ -10,7 +10,6 @@ pipeline {
                     sh label: 'git clone', script: '''
                     rm -Rf e-terraform
                     git clone https://github.com/metall773/e-terraform.git
-                    git checkout dev
                     '''
                 }
             }
@@ -33,7 +32,7 @@ pipeline {
                       ls -la e-terraform/
                       cd e-terraform
                       echo run terraform init
-                      cat provider-main.tf
+                      git checkout dev
                       /usr/local/bin/terraform init -no-color
                       echo run terraform plan
                       /usr/local/bin/terraform plan  -no-color
