@@ -32,7 +32,7 @@ pipeline {
                       ls -la e-terraform/
                       cd e-terraform
                       echo run terraform init
-                      git checkout dev
+                      git checkout prod
                       /usr/local/bin/terraform init -no-color
                       echo run terraform plan
                       /usr/local/bin/terraform plan  -no-color
