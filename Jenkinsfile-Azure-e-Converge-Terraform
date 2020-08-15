@@ -8,7 +8,9 @@ pipeline {
             steps {
                 script {
                     sh label: 'git clone', script: '''
-                    rm -Rf e-terraform
+                    rm -Rf dev
+                    mkdir dev
+                    cd dev
                     git clone https://github.com/metall773/e-terraform.git
                     '''
                 }
