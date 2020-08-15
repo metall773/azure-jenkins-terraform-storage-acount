@@ -8,7 +8,9 @@ pipeline {
             steps {
                 script {
                     sh label: 'git clone', script: '''
-                    rm -Rf e-terraform
+                    rm -Rf prod
+                    mkdir prod
+                    cd prod
                     git clone https://github.com/metall773/e-terraform.git
                     '''
                 }
@@ -28,7 +30,6 @@ pipeline {
                       export TF_VAR_ARM_CLIENT_SECRET=$AZURE_CLIENT_SECRET
                       export TF_VAR_ARM_SUBSCRIPTION_ID=$AZURE_SUBSCRIPTION_ID
                       export TF_VAR_ARM_TENANT_ID=$AZURE_TENANT_ID
-                      mkdir prod
                       cd prod
                       ls -la e-terraform/
                       cd e-terraform
